@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ComicCard from './ComicCard';
 import Loader from '../components/Loader';
 
-const apiKey = '3a2ebc013795f313daf5621dc8bf3be2';
+// const apiKey = '3a2ebc013795f313daf5621dc8bf3be2';
 
 const Wrapper = styled.div`
   display: grid;
@@ -20,33 +20,49 @@ const LoadWrapper = styled.div`
   left: 45%;
 `;
 
-const ComicsList = ({ char }) => {
-  const [comics, setComics] = useState([]);
-  const [loading, setLoading] = useState(false);
+const ComicsList = ({ comicList }) => {
+  console.log('comicList ComicCard ', comicList);
 
-  console.log('charId1: ', char);
+  // const [comics, setComics] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  // console.log('charId1 ComicsLIst: ', char);
 
   // call comics api
-  useEffect(() => {
-    const fetchEvents = async () => {
-      setLoading(true);
 
-      const res = await fetch(
-        `https://gateway.marvel.com:443/v1/public/characters/1009148/comics?apikey=3a2ebc013795f313daf5621dc8bf3be2`
-      );
-      const { data } = await res.json();
-      console.log('api2 data: ', data);
-      setComics(data.results);
-      setLoading(false);
-    };
-    fetchEvents();
-    console.log('charId2: ', char);
-  }, []);
+  // useEffect(() => {
+  //   const fetchEvents = async () => {
+  //     setLoading(true);
 
-  const url = `https://gateway.marvel.com:443/v1/public/characters/1009148/comics?apikey=3a2ebc013795f313daf5621dc8bf3be2`;
+  //     if (char) {
+  //       const res = await fetch(
+  //         `https://gateway.marvel.com:443/v1/public/characters/${char}/comics?apikey=3a2ebc013795f313daf5621dc8bf3be2`
+  //       );
+  //       const { data } = await res.json();
+  //       console.log('api2 data: ', data);
+  //       setComics(data.results);
+  //     }
+  //     setLoading(false);
+  //   };
+  //   fetchEvents();
+  //   // console.log('charId2: ', char);
+
+  //   return () => {
+  //     setLoading(false);
+  //   };
+  // }, []);
 
   return (
     <>
+      <Wrapper>
+        <>
+          {comicList.map((c) => (
+            <ComicCard key={c.title} comic={c} />
+          ))}
+        </>
+      </Wrapper>
+
+      {/*     
       {loading ? (
         <LoadWrapper>
           <Loader />
@@ -54,12 +70,12 @@ const ComicsList = ({ char }) => {
       ) : (
         <Wrapper>
           <>
-            {comics.map((c) => (
-              <ComicCard comic={c} />
+            {comicList.map((c) => (
+              <ComicCard key={c.title} comic={c} />
             ))}
           </>
         </Wrapper>
-      )}
+      )} */}
     </>
   );
 };

@@ -12,6 +12,18 @@ const LoadMore = styled.div`
   margin: 40px 0;
 `;
 
+const Input = styled.input`
+  display: flex;
+  justify-content: center;
+  width: 91vw;
+  margin: 20px auto;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1px solid grey;
+  padding: 10px;
+`;
+
 const Button = styled.button`
   /* Adapt the colors based on primary prop */
   background: red;
@@ -76,7 +88,11 @@ function App() {
       <Theme>
         <Header />
         {/* Filter Heroes */}
-        <input type="text" onChange={handleSearch}></input>
+        <Input
+          type="text"
+          onChange={handleSearch}
+          placeholder="Search Marvel Character..."
+        ></Input>
 
         {/* Show list of superheroes */}
 

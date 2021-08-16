@@ -43,7 +43,7 @@ const ComicCard = ({ comic }) => {
   useEffect(() => {
     setCreatorList(comic.creators.items);
   }, []);
-  console.log(comic);
+  console.log('comic ComicCardCOmponent', comic);
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -58,10 +58,14 @@ const ComicCard = ({ comic }) => {
   return (
     <>
       <CardWrapper onClick={handleModal}>
-        <Image
-          alt={`${comic.title}`}
-          src={`${comic.images[0].path}.${comic.images[0].extension}`}
-        />
+        {comic.images[0] ? (
+          <Image
+            alt={`${comic.title}`}
+            src={`${comic.images[0].path}.${comic.images[0].extension}`}
+          />
+        ) : (
+          <Image alt={`${comic.title}`} src={` null`} />
+        )}
         <Name>{comic.title}</Name>
         <Creators>{creators}</Creators>
         {showModal ? <Modal comic={comic} /> : <></>}

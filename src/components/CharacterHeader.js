@@ -35,15 +35,12 @@ const HeroWrapper = styled.div`
   );
 `;
 
-const CharacterHeader = ({ char }) => {
+const CharacterHeader = ({ char, charImg }) => {
   return (
     <>
       <HeroWrapper>
         <Name>{char.name}</Name>
-        <Image
-          alt={`${char.name}`}
-          // src={`${char.thumbnail.path}.${char.thumbnail.extension}`}
-        />
+        <Image alt={`${char.name}`} src={charImg} />
       </HeroWrapper>
     </>
   );
