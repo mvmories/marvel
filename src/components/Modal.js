@@ -70,10 +70,14 @@ const Modal = ({ comic }) => {
         <Close>x</Close>
 
         <Details>
-          <Image
-            alt={`${comic.title}`}
-            src={`${comic.images[0].path}.${comic.images[0].extension}`}
-          />
+          {comic.images[0] ? (
+            <Image
+              alt={`${comic.title}`}
+              src={`${comic.images[0].path}.${comic.images[0].extension}`}
+            />
+          ) : (
+            <Image alt={`${comic.title}`} src={` null`} />
+          )}
           <Description>
             {comic.description ? comic.description : 'No description'}
           </Description>

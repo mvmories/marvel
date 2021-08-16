@@ -28,22 +28,20 @@ const Character = (props) => {
     setCharImg(
       `${props.history.location.state.h.thumbnail.path}.${props.history.location.state.h.thumbnail.extension}`
     );
-    setComics(props.history.location.state.h.comics.items);
+    setComics(props.history.location.state.h.comics.available);
 
     const fetchEvents = async () => {
       setLoading(true);
 
-      if (char.id) {
+      if (char.id && comics) {
         const res = await fetch(
-          `https://gateway.marvel.com:443/v1/public/characters/${char.id}/comics?apikey=3a2ebc013795f313daf5621dc8bf3be2`
+          `https://gateway.marvel.com:443/v1/public/characters/${char.id}/comics?limit=${comics}&apikey=3a2ebc013795f313daf5621dc8bf3be2`
         );
         const { data } = await res.json();
-
+        console.log('data. ', data);
         setComicList(data.results);
-        console.log('2');
       }
       setLoading(false);
-      console.log('1');
     };
     fetchEvents();
 
@@ -52,12 +50,9 @@ const Character = (props) => {
     };
   }, [char.id]);
 
-  // useEffect(() => {
-
-  // }, []);
-
-  // console.log('char 1 ', char);
+  console.log('char props ', props);
   // console.log('comics charPage', comics);
+  // console.log('comicList ', comicList);
 
   return (
     <>
